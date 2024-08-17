@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
     const savedUser = await newUser.save();
 
     // Produce user data to Kafka
-    producer.send([{ topic: 'user-data', messages: JSON.stringify(savedUser) }], (err, data) => {
+    producer.send([{ topic: 'kafka-donny-betest', messages: JSON.stringify(savedUser) }], (err, data) => {
       if (err) console.error('Kafka Producer error:', err);
     });
 
@@ -42,13 +42,32 @@ const createUser = async (req, res) => {
 
 // Read a user by ID
 const getUserById = async (req, res) => {
+  const userId = req.params.id
+
   try {
-    const user = await User.findById(req.params.id);
+    // Check if the user is in Redis cache
+    let cachedUser;
+
+    try {
+      cachedUser = await redisClient.get(`redis_donny_betest:${userId}`);
+    } catch (redisError) {
+      return res.status(500).json({ message: 'Error accessing Redis cache' });
+    }
+
+    if (cachedUser) {
+      // User data is in cache
+      return res.json({
+        message: 'Success get an user',
+        data: JSON.parse(cachedUser)
+      });
+    }
+
+    const user = await User.findById(userId);
 
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     // Cache user data
-    redisClient.set(`user:${user._id}`, 3600, JSON.stringify(user));
+    redisClient.set(`redis_donny_betest:${user._id}`, 3600, JSON.stringify(user));
 
     res.json({
       message: 'Success get an user',
@@ -67,7 +86,7 @@ const updateUser = async (req, res) => {
     if (!updatedUser) return res.status(404).json({ message: 'User not found' });
 
     // Produce updated user data to Kafka
-    producer.send([{ topic: 'user-data', messages: JSON.stringify(updatedUser) }], (err, data) => {
+    producer.send([{ topic: 'kafka-donny-betest', messages: JSON.stringify(updatedUser) }], (err, data) => {
       if (err) console.error('Kafka Producer error:', err);
     });
 
@@ -88,7 +107,7 @@ const deleteUser = async (req, res) => {
     if (!deletedUser) return res.status(404).json({ message: 'User not found' });
 
     // Produce deleted user data to Kafka
-    producer.send([{ topic: 'user-data', messages: JSON.stringify(deletedUser) }], (err, data) => {
+    producer.send([{ topic: 'kafka-donny-betest', messages: JSON.stringify(deletedUser) }], (err, data) => {
       if (err) console.error('Kafka Producer error:', err);
     });
 

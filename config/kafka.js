@@ -6,7 +6,7 @@ const kafkaClient = new kafka.KafkaClient({ kafkaHost: process.env.KAFKA_HOST })
 const producer = new kafka.Producer(kafkaClient);
 const consumer = new kafka.Consumer(
   kafkaClient,
-  [{ topic: 'user-data', partition: 0 }],
+  [{ topic: 'kafka-donny-betest', partition: 0 }],
   { autoCommit: true }
 );
 
