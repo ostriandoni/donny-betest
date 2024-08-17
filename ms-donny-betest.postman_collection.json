@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "ad39a0d3-384f-4ea1-9346-b55b5a9d7ee5",
+		"name": "Jenius",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identityNumber\": \"1234567890\",\r\n    \"emailAddress\": \"donny@mailsac.com\",\r\n    \"accountNumber\": \"1234512345\",\r\n    \"userName\": \"don\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emailAddress\": \"donny@mailsac.com\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzA0ZmM1YWQwNjRlOGEwMGFkYTJiNSIsImVtYWlsIjoiZG9ubnlAbWFpbHNhYy5jb20iLCJpYXQiOjE3MjM4Nzk0OTIsImV4cCI6MTcyMzg4MzA5Mn0.2KZbFwWnCJg9NYXG7t5f0hDSyEasPsqHtaU_tfPgwJs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identityNumber\": \"1234567894\",\r\n    \"emailAddress\": \"donny4@mailsac.com\",\r\n    \"accountNumber\": \"1234512344\",\r\n    \"userName\": \"don4\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Get User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzA0ZmM1YWQwNjRlOGEwMGFkYTJiNSIsImVtYWlsIjoiZG9ubnlAbWFpbHNhYy5jb20iLCJpYXQiOjE3MjM4Nzk0OTIsImV4cCI6MTcyMzg4MzA5Mn0.2KZbFwWnCJg9NYXG7t5f0hDSyEasPsqHtaU_tfPgwJs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/66c052ee6d74ac564447c4b1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"66c052ee6d74ac564447c4b1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Edit User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzA0ZmM1YWQwNjRlOGEwMGFkYTJiNSIsImVtYWlsIjoiZG9ubnlAbWFpbHNhYy5jb20iLCJpYXQiOjE3MjM4Nzk0OTIsImV4cCI6MTcyMzg4MzA5Mn0.2KZbFwWnCJg9NYXG7t5f0hDSyEasPsqHtaU_tfPgwJs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identityNumber\": \"1234567894\",\r\n    \"emailAddress\": \"donny4@mailsac.com\",\r\n    \"accountNumber\": \"1234512344\",\r\n    \"userName\": \"don4\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/66c0506e8f6f29fc0530daff",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"66c0506e8f6f29fc0530daff"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzA0ZmM1YWQwNjRlOGEwMGFkYTJiNSIsImVtYWlsIjoiZG9ubnlAbWFpbHNhYy5jb20iLCJpYXQiOjE3MjM4Nzk0OTIsImV4cCI6MTcyMzg4MzA5Mn0.2KZbFwWnCJg9NYXG7t5f0hDSyEasPsqHtaU_tfPgwJs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/66c0506e8f6f29fc0530daff",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"66c0506e8f6f29fc0530daff"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
